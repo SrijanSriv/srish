@@ -2,12 +2,14 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include <sys/wait.h>
 #include "functions/parser.h"
 #define EXIT "quit\n"
 
 int main (int argc, char *const argv[]) {
 	
 	char *line = NULL;
+	//char * const filler = " ";
 	size_t len = 0;
 	ssize_t nread;
 
@@ -24,7 +26,8 @@ int main (int argc, char *const argv[]) {
 			printf("%s\n", line);
 		}
 	} else {
-		//parser(willhaveargv);
+		parser(argc, argv);
+		
 	}
 
 }
