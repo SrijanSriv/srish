@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include "functions/parser.h"
 #define EXIT "quit\n"
 
 int main (int argc, char *const argv[]) {
@@ -20,6 +21,10 @@ int main (int argc, char *const argv[]) {
 				exit(0);
 			}
 			printf("\e[38;5;033msrish> \033[0m");
+			printf("%s\n", line);
 		}
+	} else {
+		//parser(willhaveargv);
 	}
+
 }
