@@ -4,13 +4,12 @@
 void parser (int argc, char *const line[]) {
 	
 	int rc = fork();
-	char *path = "/bin/";
+	char *path = strdup("/bin/");
 	if (rc == 0) {
 		char  *myargv[argc];
 		for (int i = 0; i < argc - 1; i++) {
 			if (i == 0) {
-				myargv[0] = strcat(path, line[1]);	/*this line is not working for some reason*/
-				printf("%s\n", myargv[0]);
+				myargv[0] = strcat(path, line[1]);
 			} else {
 				myargv[i] = strdup(line[i + 1]);
 			}
