@@ -1,7 +1,7 @@
-#ifndef PARSER_H
-#define PARSER_H
+#ifndef BATCH_H
+#define BATCH_H
 
-void parser (int argc, char *const line[]) {
+void batch (int argc, char *const line[]) {
 	
 	int rc = fork();
 	char *path = strdup("/bin/");
