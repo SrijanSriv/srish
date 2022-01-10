@@ -15,7 +15,12 @@ void batch (int argc, char *const line[]) {
 			}
 		}
 		myargv[argc - 1] = NULL;
-		execv(myargv[0], myargv);
+		if (access(myargv[0], F_OK) == 0) {
+			execv(myargv[0], myargv);
+		} else {
+			printf("\e[38;5;033merror:binary %s does not exist\033[0m\n", myargv[0]);
+			exit(0);
+		}
 	} else {
 		rc = (int)wait(NULL);
 	}
