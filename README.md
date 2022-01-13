@@ -14,4 +14,4 @@ Exit using `exit`.
 
 ---
 
-For now, the shell doesnt implement `cd` or checks whether a certain binary is actully present in the prespecified path.
+For now, the shell doesnt implement `cd`. I would advice not to add this shell to your bin since, apparently, `access()` is not really that secure.
