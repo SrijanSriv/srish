@@ -4,14 +4,21 @@
 void batch (int argc, char *const line[]) {
 	
 	int rc = fork();
+	int k;
+	char *name = strdup("./srish");
 	char *path = strdup("/bin/");
 	if (rc == 0) {
+		if (strcmp(line[0], name) == 0) {
+			k = 1;
+		} else {
+			k = 0;
+		}
 		char  *myargv[argc];
 		for (int i = 0; i < argc - 1; i++) {
 			if (i == 0) {
-				myargv[0] = strcat(path, line[1]);
+				myargv[0] = strcat(path, line[k]);
 			} else {
-				myargv[i] = strdup(line[i + 1]);
+				myargv[i] = strdup(line[i + k]);
 			}
 		}
 		myargv[argc - 1] = NULL;

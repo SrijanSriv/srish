@@ -8,9 +8,10 @@ void interactive (char *line, size_t len) {
 	char *path = strdup("/bin/");
 	/*char *history[10] = NULL;
 	static int historyCounter = 0;*/
-	//char *multi = strdup("&&");
+	char *multi = strdup("&&");
 	size_t counter = 0;
 	int itr = 0;
+	int i = 0;
 	if (rc == 0) {
 		
 		while (*copy != '\0') {
@@ -22,14 +23,20 @@ void interactive (char *line, size_t len) {
 		char *myargv[counter + 1];
 	
 		while (itr < counter) {
-			myargv[itr] = strsep(&line, " ");
+			myargv[i] = strsep(&line, " ");
+			if (strcmp(myargv[i], multi) == 0) {
+				batch(++i, myargv);
+				i = -1;
+			}
+			++i;
 			++itr;
 		}
-		--counter;
+		--i;
 		myargv[0] = strcat(path, myargv[0]);
-		myargv[counter] = strsep(&myargv[counter], "\n");
-		myargv[++counter] = NULL;
+		myargv[i] = strsep(&myargv[i], "\n");
+		myargv[++i] = NULL;
 		//history[historyCounter++] = strsep(&line, "\n");
+		
 		if (access(myargv[0], F_OK) == 0) {
 			execv(myargv[0], myargv);
 		} else {

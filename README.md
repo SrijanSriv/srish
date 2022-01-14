@@ -8,7 +8,7 @@ Compile using `gcc -o srish srish.c -Wall -Werror`
 
 Batch mode is basically executing commands via the shell without jumping into shell mode. E.g. `./srish ls -al` on your favourite linux based terminal.
 
-Interactive mode is what we are used to seeing when we start a shell. A prompt `srish> ` is shown, which handles all the binary request.
+Interactive mode is what we are used to seeing when we start a shell. A prompt `srish> ` is shown, which handles all the binary request. This mode also supports multiple inputs, so `ls -al && pwd` will run both those binaries.
 
 Exit using `exit`.
 
