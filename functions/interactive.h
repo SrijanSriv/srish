@@ -9,6 +9,7 @@ void interactive (char *line, size_t len) {
 	/*char *history[10] = NULL;
 	static int historyCounter = 0;*/
 	char *multi = strdup("&&");
+	char *d = strdup("cd");
 	size_t counter = 0;
 	int itr = 0;
 	int i = 0;
@@ -24,6 +25,17 @@ void interactive (char *line, size_t len) {
 	
 		while (itr < counter) {
 			myargv[i] = strsep(&line, " ");
+			if (strcmp(myargv[i], d) == 0) {
+				++i;
+				++itr;
+				myargv[i] = strsep(&line, " ");
+				if (chdir(myargv[i]) == 0) {
+					exit(0);
+				} else {
+					printf("srish:error in cd\n");
+					break;
+				}
+			}
 			if (strcmp(myargv[i], multi) == 0) {
 				batch(++i, myargv);
 				i = -1;
