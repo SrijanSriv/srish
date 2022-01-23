@@ -33,7 +33,7 @@ void interactive (char *line, size_t len) {
 					exit(0);
 				} else {
 					printf("srish:error in cd\n");
-					break;
+					exit(0);
 				}
 			}
 			if (strcmp(myargv[i], multi) == 0) {
