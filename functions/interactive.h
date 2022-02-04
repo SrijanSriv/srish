@@ -28,11 +28,13 @@ void interactive (char *line, size_t len) {
 			if (strcmp(myargv[i], d) == 0) {
 				++i;
 				++itr;
-				myargv[i] = strsep(&line, " ");
+				myargv[i] = strsep(&line, "\n");
 				if (chdir(myargv[i]) == 0) {
+					printf("success in changing dir to: ~%s~\n", myargv[i]);
 					exit(0);
 				} else {
 					printf("srish:error in cd\n");
+					printf("%s\n", myargv[i]);
 					exit(0);
 				}
 			}
