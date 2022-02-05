@@ -1,15 +1,16 @@
 #ifndef INTERACTIVE_H
 #define INTERACTIVE_H
+#define MAX_PATH 50
 
 void interactive (char *line, size_t len) {
 	
 	int rc = fork();
 	char *copy = strdup(line);
 	char *path = strdup("/bin/");
+	char *d = strdup("cd");
 	/*char *history[10] = NULL;
 	static int historyCounter = 0;*/
 	char *multi = strdup("&&");
-	char *d = strdup("cd");
 	size_t counter = 0;
 	int itr = 0;
 	int i = 0;
@@ -30,11 +31,13 @@ void interactive (char *line, size_t len) {
 				++itr;
 				myargv[i] = strsep(&line, "\n");
 				if (chdir(myargv[i]) == 0) {
-					printf("success in changing dir to: ~%s~\n", myargv[i]);
+					char cwd[MAX_PATH];
+			                if (getcwd(cwd, sizeof(cwd)) != NULL);
+					printf("success in changing dir to: ~%s~\n", cwd);
 					exit(0);
 				} else {
 					printf("srish:error in cd\n");
-					printf("%s\n", myargv[i]);
+					printf("~%s~\n", myargv[i]);
 					exit(0);
 				}
 			}
